@@ -16,40 +16,47 @@ class Code2
     bool halt;			//termino la ejecucion?
 
 public:
-    Code2 (uint16_t inic) {
+    Code2(uint16_t inic) {
         PC = inic;
         halt = false;
         mem = new int16_t[65536];
     }
 
-    ~Code2 () {
+    ~Code2() {
         delete[]mem;
     }
 
-    void set_mem (uint16_t pos, int16_t val) {
+    void set_mem(uint16_t pos, int16_t val) {
         mem[pos] = val;
     }
 
-    int16_t get_mem (uint16_t pos) {
+    int16_t get_mem(uint16_t pos) {
         return mem[pos];
     }
 
-    bool termino_ejecucion () {
+    bool termino_ejecucion() {
         return halt;
     }
 
-    int16_t get_reg (int r) {
+    int16_t get_reg(int r) {
         return registros[r];
     }
 
     bool get_flag(Flag f) {
         return flags[f];
     }
+    
+    void print_flags() {
+	 std::cout << "flags: {Z = " << (flags[Z] ? 1:0)
+		   << "; C = " << (flags[C] ? 1:0)
+		   << "; S = " << (flags[S] ? 1:0)
+		   << "; V = " << (flags[V] ? 1:0) << "}" << std::endl;
+    }
 
-    void ejecutar_instruccion ();
+    void ejecutar_instruccion();
 
 private:
-    void fetching () {
+    void fetching() {
         RI = mem[PC];
         PC++;
     }

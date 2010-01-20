@@ -8,7 +8,7 @@ const std::string repr[] =  {"LD", "ST", "LLO", "LHI", "IN", "OUT",
                              "SHRA", "B", "CALL", "RET", "HALT"
                             };
 
-size_t saltear_espacios(const std::string & str, size_t pos=0)
+size_t saltear_espacios(const std::string & str, size_t pos = 0)
 {
     if (pos >= str.size() || pos == std::string::npos)
         return std::string::npos;
@@ -38,7 +38,7 @@ instruccion leer_instruccion(const std::string & str, std::string & instr, size_
     //del nombre de la instruccion
 
     if ((instr.size() == 2 && instr[0] == 'B') ||
-            (instr.size() == 5 && instr.substr(0,4) == "CALL"))
+            (instr.size() == 5 && instr.substr(0, 4) == "CALL"))
         switch (instr[instr.size() - 1]) {
         case 'R':
         case 'V':
